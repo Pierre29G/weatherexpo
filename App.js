@@ -15,7 +15,12 @@ export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <NavigationContainer>
-        <Stack.Navigator>
+        <Stack.Navigator
+        screenOptions={{
+          headerTintColor: 'white',
+          headerStyle: { backgroundColor: '#1b212f' },
+        }}
+        >
           <Stack.Screen name="Home" component={Home} />
           <Stack.Screen name="Day" component={Day} />
         </Stack.Navigator>
