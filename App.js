@@ -14,6 +14,9 @@ export default function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
+      <StatusBar
+      style="light" // Here is where you change the font-color
+      />
       <NavigationContainer>
         <Stack.Navigator
         screenOptions={{
