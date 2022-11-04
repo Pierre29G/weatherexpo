@@ -1,18 +1,13 @@
 import * as React from 'react';
-import { Image, StyleSheet, Text, TouchableOpacity, View, TextInput, SafeAreaView, Button } from 'react-native';
+import { Image, StyleSheet, Text, TouchableOpacity, View, TextInput, SafeAreaView, Button, ScrollView } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StatusBar } from 'expo-status-bar';
 import { useQuery,QueryClient,QueryClientProvider,} from '@tanstack/react-query'
 
 function Home({ navigation }) {
-  const [found, setFound] = React.useState(0);
-  const [gofetch, setGofetch] = React.useState(0);
-  const [queryUrl, setQueryUrl] = React.useState(null);
-  const [sprite, onChangeText] = React.useState('');
-  const [apitext, setApitext] = React.useState('');
+  const dateoptions = { weekday: 'short' };
   
-
   const { isLoading, error, data } = useQuery(['repoData'], () =>
     fetch('http://weather-api.mathisbarre.com/nantes').then(res =>
       {
@@ -44,7 +39,6 @@ function Home({ navigation }) {
     }
 
     function TextHeadingSmall({wanteddata}){
-      console.log(data?.currentConditions[wanteddata]['value']);
       return (
         <View style={styles.column}>
           <Text style={styles.s}>
@@ -58,7 +52,7 @@ function Home({ navigation }) {
     }
     
   return (
-      <View style={styles.general}>
+      <SafeAreaView style={styles.general}>
         <View style={styles.topcontainer}>
           <View style={styles.row}>
             <Image source={{uri: data.currentConditions.iconBig}} style={styles.thumbnail} />
@@ -79,16 +73,16 @@ function Home({ navigation }) {
         <ScrollView>
           {data.next5DaysConditions.map(day => 
           <TouchableOpacity onPress={() => navigation.navigate('Day', {daydate: day?.date})} style={styles.dayview}>
-          <Text style={styles.m}>
+            <Text style={styles.m}>
               {new Date(day?.date).toLocaleDateString('fr-FR', dateoptions)}
-          </Text>
-          <Image source={{uri: day?.icon}} style={styles.smallthumbnail} />
-          <Text style={styles.mdark}>
-            {day?.condition}
-          </Text>
-          <Text style={styles.m}>
-            Max. {day?.temperature.max} {day?.temperature.unit}
-          </Text>
+            </Text>
+            <Image source={{uri: day?.icon}} style={styles.smallthumbnail} />
+            <Text style={styles.mdark}>
+              {day?.condition}
+            </Text>
+            <Text style={styles.m}>
+              Max. {day?.temperature.max} {day?.temperature.unit}
+            </Text>
           </TouchableOpacity>
           )}
         </ScrollView >
