@@ -114,10 +114,15 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 50,
   },
   dayview: {
-    //flex: 1,
-    //flexDirection: "row",
-    //justifyContent: "space-between",
-    //height: 50,
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    height: 50,
+    marginBottom : 50,
+    marginRight : 20,
+    marginLeft : 20,
+    borderBottomColor: '#1b212f',
+    borderBottomWidth: 2
   },
   row: {
     flex: 1,
@@ -149,11 +154,11 @@ const styles = StyleSheet.create({
   },
   m: {
     color: 'white',
-    fontSize: 25,
+    fontSize: 20,
   },
   mdark: {
     color: '#b4bac4',
-    fontSize: 25,
+    fontSize: 20,
   },
   s: {
     color: 'white',
