@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Image, StyleSheet, Text, TouchableOpacity, View, TextInput, SafeAreaView, Button, ScrollView } from 'react-native';
+import { Image, StyleSheet, Text, TouchableOpacity, View, SafeAreaView, ScrollView, RefreshControl } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StatusBar } from 'expo-status-bar';
@@ -17,6 +17,17 @@ function Home({ navigation }) {
       return res.json()}
       )
   )
+
+  const wait = (timeout) => {
+    return new Promise(resolve => setTimeout(resolve, timeout));
+  }
+  
+  const [refreshing, setRefreshing] = React.useState(false);
+
+  const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+    wait(2000).then(() => setRefreshing(false));
+  }, []);
     
     if (isLoading){
         return (
@@ -52,7 +63,14 @@ function Home({ navigation }) {
     }
     
   return (
-      <SafeAreaView style={styles.general}>
+      <ScrollView style={styles.general} 
+                    contentContainerStyle={styles.scrollView}
+                      refreshControl={
+                        <RefreshControl
+                          refreshing={refreshing}
+                          onRefresh={onRefresh}
+                        />
+                      }>
         <View style={styles.topcontainer}>
           <View style={styles.row}>
             <Image source={{uri: data.currentConditions.iconBig}} style={styles.thumbnail} />
@@ -70,7 +88,7 @@ function Home({ navigation }) {
             <TextHeadingSmall wanteddata='humidity'/>
           </View>
         </View>
-        <ScrollView>
+        <View style={styles.padtop}>
           {data.next5DaysConditions.map(day => 
           <TouchableOpacity onPress={() => navigation.navigate('Day', {daydate: day?.date})} style={styles.dayview}>
             <Text style={styles.m}>
@@ -85,8 +103,8 @@ function Home({ navigation }) {
             </Text>
           </TouchableOpacity>
           )}
-        </ScrollView >
-      </SafeAreaView>
+        </View >
+      </ScrollView>
   );
 }
 
@@ -163,6 +181,9 @@ const styles = StyleSheet.create({
     color: '#b4bac4',
     fontSize: 15,
     textAlign: 'center',
+  },
+  padtop: {
+  paddingTop: 25,
   },
 });
 

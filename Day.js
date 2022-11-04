@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Image, StyleSheet, Text, TouchableOpacity, View, TextInput, SafeAreaView, ScrollView } from 'react-native';
+import { Image, StyleSheet, Text, TouchableOpacity, View, TextInput, SafeAreaView, ScrollView, RefreshControl } from 'react-native';
 import { NavigationContainer, useRoute } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useQuery,QueryClient,QueryClientProvider,} from '@tanstack/react-query'
@@ -17,6 +17,17 @@ function Day({ navigation, daydate }) {
       return res.json()}
       )
   )
+
+  const wait = (timeout) => {
+    return new Promise(resolve => setTimeout(resolve, timeout));
+  }
+  
+  const [refreshing, setRefreshing] = React.useState(false);
+
+  const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+    wait(2000).then(() => setRefreshing(false));
+  }, []);
 
   console.log(data);
     
@@ -42,7 +53,14 @@ function Day({ navigation, daydate }) {
     
   return (
       <SafeAreaView style={styles.general}>
-        <ScrollView>
+        <ScrollView 
+        contentContainerStyle={styles.padtop}
+                      refreshControl={
+                        <RefreshControl
+                          refreshing={refreshing}
+                          onRefresh={onRefresh}
+                        />
+                      }>
           {data.hourly.map(hour => 
           <View style={styles.dayview}>
             <Text style={styles.m}>
@@ -135,5 +153,8 @@ const styles = StyleSheet.create({
     color: '#b4bac4',
     fontSize: 15,
     textAlign: 'center',
+  },
+  padtop: {
+  paddingTop: 25,
   },
 });
