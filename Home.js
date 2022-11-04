@@ -73,11 +73,11 @@ function Home({ navigation }) {
             <TextHeadingSmall wanteddata='humidity'/>
           </View>
         </View>
-        <View>
+        <ScrollView>
           {data.next5DaysConditions.map(day => 
-          <View style={styles.dayview}>
+          <TouchableOpacity onPress={() => navigation.navigate('Day', {daydate: day?.date})} style={styles.dayview}>
           <Text style={styles.m}>
-            {day?.date}
+              {new Date(day?.date).toLocaleDateString('fr-FR', dateoptions)}
           </Text>
           <Image source={{uri: day?.icon}} style={styles.smallthumbnail} />
           <Text style={styles.mdark}>
@@ -86,10 +86,10 @@ function Home({ navigation }) {
           <Text style={styles.m}>
             Max. {day?.temperature.max} {day?.temperature.unit}
           </Text>
-          </View>
+          </TouchableOpacity>
           )}
-        </View>
-      </View>
+        </ScrollView >
+      </SafeAreaView>
   );
 }
 
