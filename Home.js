@@ -16,6 +16,9 @@ function Home({ navigation }) {
   const { isLoading, error, data } = useQuery(['repoData'], () =>
     fetch('http://weather-api.mathisbarre.com/nantes').then(res =>
       {
+        if(!res.ok){
+          throw new Error('Fail');
+        }
       return res.json()}
       )
   )
