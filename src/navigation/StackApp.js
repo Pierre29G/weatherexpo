@@ -1,17 +1,16 @@
-import React from 'react';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Home from '../screens/Home';
-import Day from '../screens/Day';
+import React from 'react'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import Home from '../screens/Home'
+import Day from '../screens/Day'
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator()
 
-function StackApp() {
-
+function StackApp () {
   return (
         <Stack.Navigator
         screenOptions={{
           headerTintColor: 'white',
-          headerStyle: { backgroundColor: '#1b212f' },
+          headerStyle: { backgroundColor: '#1b212f' }
         }}
         >
           <Stack.Screen name="Home" component={Home} />
@@ -20,4 +19,4 @@ function StackApp() {
   )
 }
 
-export default StackApp;
+export default StackApp

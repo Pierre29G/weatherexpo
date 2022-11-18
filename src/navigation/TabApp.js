@@ -1,27 +1,26 @@
-import React from 'react';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import Day from '../screens/Day';
-import StackApp from './StackApp';
+import React from 'react'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import Ionicons from 'react-native-vector-icons/Ionicons'
+import Day from '../screens/Day'
+import StackApp from './StackApp'
 
-const Tab = createBottomTabNavigator();
+const Tab = createBottomTabNavigator()
 
-function TabApp() {
-
+function TabApp () {
   return (
-        <Tab.Navigator 
+        <Tab.Navigator
         screenOptions={({ route }) => ({
           headerShown: false,
           tabBarIcon: ({ focused, color, size }) => {
-            let iconName;
+            let iconName
 
             if (route.name === 'Credit') {
-              iconName = focused ? 'ios-information-circle' : 'ios-information-circle-outline';
+              iconName = focused ? 'ios-information-circle' : 'ios-information-circle-outline'
             } else if (route.name === 'Accueil') {
-              iconName = focused ? 'ios-home' : 'ios-home-outline';
+              iconName = focused ? 'ios-home' : 'ios-home-outline'
             }
 
-            return <Ionicons name={iconName} size={size} color={color} />;
+            return <Ionicons name={iconName} size={size} color={color} />
           },
           tabBarActiveTintColor: 'white',
           tabBarInactiveTintColor: '#b4bac4',
@@ -33,4 +32,4 @@ function TabApp() {
   )
 }
 
-export default TabApp;
+export default TabApp
