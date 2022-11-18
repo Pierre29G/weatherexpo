@@ -28,8 +28,6 @@ function Day({ navigation, daydate }) {
     wait(2000).then(() => setRefreshing(false));
   }, []);
 
-  console.log(data);
-    
     if (isLoading){
         return (
           <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
