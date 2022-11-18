@@ -10,19 +10,9 @@ export default function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <StatusBar
-      style="light" // Here is where you change the font-color
-      />
+      <StatusBar style="light" />
       <NavigationContainer>
-        <Stack.Navigator
-        screenOptions={{
-          headerTintColor: 'white',
-          headerStyle: { backgroundColor: '#1b212f' },
-        }}
-        >
-          <Stack.Screen name="Home" component={Home} />
-          <Stack.Screen name="Day" component={Day} />
-        </Stack.Navigator>
+        <TabApp />
       </NavigationContainer>
     </QueryClientProvider>
   )
