@@ -59,7 +59,7 @@ function Day({ navigation, daydate }) {
                         />
                       }>
           {data.hourly.map(hour => 
-          <View style={theme.dayview}>
+          <View key={hour?.datetime} style={theme.dayview}>
             <Text style={theme.m}>
               {new Date(hour?.datetime).getHours()} : 00
             </Text>
