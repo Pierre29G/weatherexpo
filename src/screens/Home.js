@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import * as React from 'react'
 import { Image, Text, TouchableOpacity, View, ScrollView, RefreshControl } from 'react-native'
 import theme from '../../assets/style/theme'
@@ -88,7 +89,7 @@ function Home ({ navigation }) {
         </View>
         <View style={theme.padtop}>
           {data.next5DaysConditions.map(day =>
-          <TouchableOpacity onPress={() => navigation.navigate('Day', { daydate: day?.date })} style={theme.dayview}>
+          <TouchableOpacity key={day?.date} onPress={() => navigation.navigate('Day', { daydate: day?.date })} style={theme.dayview}>
             <Text style={theme.m}>
               {new Date(day?.date).toLocaleDateString('fr-FR', dateoptions)}
             </Text>
