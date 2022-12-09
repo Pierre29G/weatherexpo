@@ -1,9 +1,11 @@
-function average (list) {
-  let sum = 0
+function average(list) {
+  let sum = 0;
 
-  list.forEach(function (num) { sum += num })
+  list.forEach(function (num) {
+    sum += num;
+  });
 
-  return sum / list.length
+  return sum / list.length;
 }
 
-module.exports = average
+module.exports = average;
