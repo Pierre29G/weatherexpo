@@ -23,7 +23,7 @@ const theme = {
     marginLeft: 20,
     borderBottomColor: '#1b212f',
     borderBottomWidth: 2
-  },
+  } as const,
   row: {
     flex: 1,
     flexDirection: 'row'
