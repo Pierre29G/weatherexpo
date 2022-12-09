@@ -1,8 +1,8 @@
 import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import Ionicons from 'react-native-vector-icons/Ionicons'
-import Day from '../screens/Day'
 import StackApp from './StackApp'
+import Credits from '../screens/Credits'
 
 const Tab = createBottomTabNavigator()
 
@@ -27,7 +27,7 @@ function TabApp () {
           tabBarStyle: { backgroundColor: '#1b212f' }
         })}>
             <Tab.Screen name="Accueil" component={StackApp} />
-            <Tab.Screen name="Credit" component={Day} />
+            <Tab.Screen name="Credit" component={Credits} />
         </Tab.Navigator>
   )
 }
