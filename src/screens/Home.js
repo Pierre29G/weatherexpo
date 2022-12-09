@@ -3,11 +3,14 @@ import * as React from 'react'
 import { Image, Text, TouchableOpacity, View, ScrollView, RefreshControl } from 'react-native'
 import theme from '../../assets/style/theme'
 import { useQuery } from '@tanstack/react-query'
+import { useNavigation } from '@react-navigation/native'
 
-function Home ({ navigation }) {
+function Home () {
+  const navigation = useNavigation()
+
   const dateoptions = { weekday: 'short' }
 
-  const { isLoading, error, data } = useQuery(['repoData'], () =>
+  const { isLoading, error, data, refetch, isRefetching } = useQuery(['repoData'], () =>
     fetch('http://weather-api.mathisbarre.com/nantes').then(res => {
       if (!res.ok) {
         throw new Error('Fail')
@@ -25,6 +28,7 @@ function Home ({ navigation }) {
 
   const onRefresh = React.useCallback(() => {
     setRefreshing(true)
+    refetch()
     wait(2000).then(() => setRefreshing(false))
   }, [])
 
@@ -66,7 +70,7 @@ function Home ({ navigation }) {
                     contentContainerStyle={theme.scrollView}
                       refreshControl={
                         <RefreshControl
-                          refreshing={refreshing}
+                          refreshing={refreshing || isRefetching}
                           onRefresh={onRefresh}
                         />
                       }>

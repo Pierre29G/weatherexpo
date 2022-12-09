@@ -7,7 +7,7 @@ import { useQuery } from '@tanstack/react-query'
 function Day () {
   const route = useRoute<any>()
 
-  const { isLoading, error, data } = useQuery(['dayData'], () =>
+  const { isLoading, error, data, refetch, isRefetching } = useQuery(['dayData',route.params.daydate ], () =>
     fetch('http://weather-api.mathisbarre.com/nantes/' + route.params.daydate).then(res => {
       if (!res.ok) {
         throw new Error('Fail')
@@ -25,6 +25,7 @@ function Day () {
 
   const onRefresh = React.useCallback(() => {
     setRefreshing(true)
+    refetch()
     wait(2000).then(() => setRefreshing(false))
   }, [])
 
@@ -54,7 +55,7 @@ function Day () {
         contentContainerStyle={theme.padtop}
                       refreshControl={
                         <RefreshControl
-                          refreshing={refreshing}
+                          refreshing={refreshing || isRefetching}
                           onRefresh={onRefresh}
                         />
                       }>
