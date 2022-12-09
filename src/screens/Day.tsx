@@ -5,7 +5,7 @@ import theme from '../../assets/style/theme'
 import { useQuery } from '@tanstack/react-query'
 
 function Day () {
-  const route = useRoute()
+  const route = useRoute<any>()
 
   const { isLoading, error, data } = useQuery(['dayData'], () =>
     fetch('http://weather-api.mathisbarre.com/nantes/' + route.params.daydate).then(res => {
