@@ -11,7 +11,7 @@ import { useRoute } from "@react-navigation/native";
 import theme from "../../assets/style/theme";
 import { useQuery } from "@tanstack/react-query";
 
-function Day() {
+function ScreenDay() {
   const route = useRoute<any>();
 
   const { isLoading, error, data, refetch, isRefetching } = useQuery(
@@ -83,4 +83,4 @@ function Day() {
   );
 }
 
-export default Day;
+export default ScreenDay;

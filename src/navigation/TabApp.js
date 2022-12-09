@@ -2,7 +2,7 @@ import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import StackHome from './StackHome'
-import Credits from '../screens/Credits'
+import ScreenCredits from '../screens/ScreenCredits'
 
 const Tab = createBottomTabNavigator()
 
@@ -30,7 +30,7 @@ function TabApp () {
       })}
     >
       <Tab.Screen name="Home" component={StackHome} />
-      <Tab.Screen name="Credits" component={Credits} />
+      <Tab.Screen name="Credits" component={ScreenCredits} />
     </Tab.Navigator>
   )
 }

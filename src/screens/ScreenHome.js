@@ -12,7 +12,7 @@ import theme from '../../assets/style/theme'
 import { useQuery } from '@tanstack/react-query'
 import { useNavigation } from '@react-navigation/native'
 
-function Home () {
+function ScreenHome () {
   const navigation = useNavigation()
 
   const dateoptions = { weekday: 'short' }
@@ -120,4 +120,4 @@ function Home () {
   )
 }
 
-export default Home
+export default ScreenHome

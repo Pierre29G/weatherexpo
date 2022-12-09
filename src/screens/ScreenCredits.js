@@ -2,7 +2,7 @@ import * as React from 'react'
 import { Text, ScrollView } from 'react-native'
 import theme from '../../assets/style/theme'
 
-function Credits () {
+function ScreenCredits () {
   return (
     <ScrollView style={theme.general}>
       <Text style={theme.m}>
@@ -31,4 +31,4 @@ function Credits () {
   )
 }
 
-export default Credits
+export default ScreenCredits
