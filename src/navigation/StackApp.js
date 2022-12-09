@@ -7,15 +7,15 @@ const Stack = createNativeStackNavigator()
 
 function StackApp () {
   return (
-        <Stack.Navigator
-        screenOptions={{
-          headerTintColor: 'white',
-          headerStyle: { backgroundColor: '#1b212f' }
-        }}
-        >
-          <Stack.Screen name="Home" component={Home} />
-          <Stack.Screen name="Day" component={Day} />
-        </Stack.Navigator>
+    <Stack.Navigator
+      screenOptions={{
+        headerTintColor: 'white',
+        headerStyle: { backgroundColor: '#1b212f' }
+      }}
+    >
+      <Stack.Screen name="Home" component={Home} />
+      <Stack.Screen name="Day" component={Day} />
+    </Stack.Navigator>
   )
 }
 
