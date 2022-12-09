@@ -5,7 +5,7 @@ import Day from '../screens/Day'
 
 const Stack = createNativeStackNavigator()
 
-function StackApp () {
+function StackHome () {
   return (
     <Stack.Navigator
       screenOptions={{
@@ -19,4 +19,4 @@ function StackApp () {
   )
 }
 
-export default StackApp
+export default StackHome
